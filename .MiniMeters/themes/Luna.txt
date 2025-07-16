@@ -1,0 +1,21 @@
+color: 205,150,239
+selection: 205,150,239
+text: 205,150,239
+accent: 103,23,152
+#bg: 116,26,172
+bg: 34,28,53
+bgaccent: 103,23,152
+spectrogram_main: 205,150,239
+
+
+# waveform: 255,0,255,255
+
+# rgb_waveform_opacity_with_history:170
+# 246,117,153
+
+# waveform_low: 255,0,0
+#waveform_low: 246,117,153
+# waveform_mid: 0,255,0
+# waveform_mid: 0,255,0
+# waveform_high: 50,50,255
+# waveform_high: 50,50,255
