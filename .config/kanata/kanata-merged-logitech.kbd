@@ -5,7 +5,7 @@
 
   linux-x11-repeat-delay-rate 200,40
 
-
+  concurrent-tap-hold yes
 
   ;; For Linux
   ;; input  (device-file "/dev/input/by-id/usb-Logitech_Gaming_Keyboard_G910_067938633135-event-kbd")
@@ -28,10 +28,9 @@ lctl  lmet lalt            spc            ralt rmet menu rctl               left
 )
 
 (defalias
-  cmk  (multi (layer-switch colemak-dh-wide) (cmd notify-send "Switching To Colemak-DH Wide"))
-  qwt  (multi (layer-switch qwerty) (cmd notify-send "Switching To QWERTY"))
+  cmk  (layer-switch colemak-dh-wide)
+  qwt  (layer-switch qwerty)
   sym  (layer-toggle symbols)
-  ext  (layer-toggle extend)
   qex  (layer-toggle qwerty-extend)
   num  (layer-toggle numbers)
   at   S-2
@@ -39,6 +38,23 @@ lctl  lmet lalt            spc            ralt rmet menu rctl               left
   unc  (unshift ,)
   unh  (unshift -)
   unbspc (unmod bspc)
+
+  ext (switch
+    ((key-history rctl 1)) C-bspc break
+    () (layer-toggle extend) break
+    )
+
+;; Mouse stuff
+  ms   (layer-toggle mouse-layer)
+  msl  (movemouse-accel-left  1 1000 1 5)
+  msr  (movemouse-accel-right 1 1000 1 5)
+  msu  (movemouse-accel-up    1 1000 1 5)
+  msd  (movemouse-accel-down  1 1000 1 5)
+
+  ;;space (switch
+  ;;  () spc fallthrough
+  ;;  ((key-history . 1)) (one-shot-press 1000 lsft) break
+  ;;)
 )
 
 (deflayer qwerty
@@ -55,20 +71,32 @@ lctl lmet   lalt           spc            ralt rmet menu rctl               left
 (deflayer colemak-dh-wide
 
 caps XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX    XX             prnt  @qwt  break
-  grv  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   XX      ins   home  pgup
-  tab  q    w    f    p    b   S--   j    l    u    y    ;     '    \       del   end   pgdn
-  @ext a    r    s    t    g    /    m    n    e    i    o          rctl    
+  XX   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   XX      ins   home  pgup
+  XX   q    w    f    p    b   S--   j    l    u    y    ;     '    \       del   end   pgdn
+  @ext a    r    s    t    g    /    m    n    e    i    o          rctl        
   @sym x    c    d    v    z   @unh  k    h  @unc  @unp             ret           XX
 XX    XX   lmet            spc            @num ralt menu rsft               XX    XX    XX  
 
 )
+
+(deflayer mouse-layer
+
+XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX  XX  XX                XX    XX    XX
+  XX   _    _    _    _    _    _    _    _    _    _    _     _    XX      XX    XX    XX
+  XX   _    _    _    _    _    _    _    mbtp mltp mrtp mftp  _    XX      XX    XX    XX
+  XX   _    _    _    _    _    _    _    @msl @msd @msu @msr       XX     
+  _    _    _    _    _    _    _    _    mmtp _    _               XX            XX
+XX    XX   _               spc            _    _    _    _                  XX    XX    XX  
+
+)
+
 
 (deflayer extend
 
 XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX  XX  XX             XX  XX  XX
   XX   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        XX      XX    XX    XX
   XX   esc  XX   tab  ret  XX   XX  XX @unbspc pgdn pgup del   _    XX      XX    XX    XX
-  XX   lalt lmet lsft lctl XX   XX   XX   left down up   right      C-bspc 
+  XX   lalt lmet lsft lctl @ms  XX   XX   left down up   right      C-bspc 
   XX   C-z  C-x  C-c  C-v  XX   XX   XX   XX   XX   XX              _             XX
 _     _    _               spc            _    _    _    _                  XX    XX    XX  
 
@@ -104,7 +132,7 @@ _     _    _               spc            _    _    _    _                  XX  
 
  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX  XX  XX                XX    XX    XX
  XX   _    _    _    _    _    _    _    _    _    _    _     _    _       XX    XX    XX
- XX   _    _    6    _    _    _    _    _    8    _    _     _    _       XX    XX    XX
+ XX   _    _    6    _    _    _    _    _    8    _   S-;    _    _       XX    XX    XX
  _    7    5    4    0    _    _    _    1    2    3    9          _      
  XX   _    _    _    _    _    _    _    _    _    _               _             XX
  _     _    _               spc            _    _    _    _                  XX    XX    XX  

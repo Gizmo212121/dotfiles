@@ -1,0 +1,12 @@
+configuration {
+  /* use kitty -e for shell commands */
+  terminal: "kitty";
+  run-command: "{cmd}";
+  run-shell-command: "{terminal} -e {cmd}";
+
+  /* what shows up */
+  modi: "drun,run,ssh,targets:~/.config/rofi/targets.sh";
+  matching: "fuzzy";
+  show-icons: true;
+}
+@theme "~/.config/rofi/fuzzelish.rasi"

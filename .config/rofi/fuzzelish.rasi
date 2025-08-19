@@ -1,0 +1,102 @@
+* {
+  /* palette */
+  bg:       #221C35FF;  /* background   */
+  fg:       #5A3A7EFF;  /* text         */
+  promptc:  #F67599FF;  /* prompt label */
+  inputc:   #FFE3EBFF;  /* input text   */
+  matchc:   #F67599FF;  /* match hilite */
+  selbg:    #2F2346FF;  /* selection bg */
+  selfg:    #F67599FF;  /* selection fg */
+  borderc:  #F67599FF;  /* border       */
+  counterc: #FFE3EBFF;  /* counter-ish  */
+  text-color: #5A3A7EFF; 
+
+  font: "Jet Brains Mono Nerd Font 14";
+
+  background-color: @bg;
+  foreground:       @fg;
+}
+
+window {
+  background-color: @bg;
+  foreground: @fg;
+  border: 2px;
+  border-color: @borderc;
+  border-radius: 12px;
+  padding: 8px;
+  width: 40ch;
+}
+
+mainbox {
+  padding: 4px;
+  background-color: transparent;
+  foreground: @fg;
+}
+
+inputbar {
+  background-color: transparent;
+  foreground: @inputc;
+  padding: 6px 8px;
+  border: 0px;
+}
+
+prompt {
+  foreground: @promptc;
+  padding: 0 8px 0 4px;
+  background-color: transparent;
+  text-color: @promptc; 
+}
+
+entry {
+  foreground: @inputc;
+  placeholder-color: @fg;
+  background-color: transparent;
+  text-color: @inputc; 
+}
+
+listview {
+  lines: 12;
+  fixed-height: true;
+  border: 0px;
+  padding: 6px 0 0 0;
+  background-color: @bg;
+  foreground: @fg;
+}
+
+element {
+  padding: 6px 10px;
+  foreground: @fg;
+  background-color: @bg;
+  spacing: 10px;  /* gap between icon and text */
+}
+
+element-icon {
+  size: 32px;     /* bigger icons */
+}
+
+element-text {
+  foreground: @selbg;
+  highlight: @matchc;
+}
+
+element-text selected {
+  foreground: @selbg;     /* make selected text your selection FG */
+  highlight:  @matchc;     /* make highlight match too (no orange) */
+  background-color: @selbg;
+}
+
+element selected {
+  background-color: @selbg;
+  foreground: @selbg;
+  border-radius: 8px;
+}
+
+element-icon selected {
+  background-color: @selbg;
+  foreground: @selfg;
+}
+//
+// message {
+//   background-color: transparent;
+//   foreground: @counterc;
+// }
